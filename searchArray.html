@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search in Array</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(241, 234, 194);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white ;
+            padding: 25px;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            background: #e3073a;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #07dc23;
+        }
+
+        .array-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .item {
+            padding: 12px;
+            background: #e9ecef;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #28a745;
+            color: white;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: red;
+        }
+
+        @media (max-width: 480px) {
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Search Value in Array</h2>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Enter value">
+        <button onclick="searchValue()">Search</button>
+    </div>
+
+    <div class="array-box" id="arrayBox"></div>
+
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+    const dataArray = ["Audi", "BMW", "Chevrolet", "toyota", "Ferrari", "fortuner", "Honda", "Hyundai", "Jaguar", "Kia"];
+
+    const arrayBox = document.getElementById("arrayBox");
+    const message = document.getElementById("message");
+
+    function displayArray(highlightIndex = -1) {
+        arrayBox.innerHTML = "";
+        dataArray.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "item";
+            if (index === highlightIndex) {
+                div.classList.add("highlight");
+            }
+            div.textContent = item;
+            arrayBox.appendChild(div);
+        });
+    }
+
+    function searchValue() {
+        const input = document.getElementById("searchInput").value.trim();
+        message.textContent = "";
+
+        const index = dataArray.findIndex(
+            item => item.toLowerCase() === input.toLowerCase()
+        );
+
+        if (index !== -1) {
+            displayArray(index);
+        } else {
+            displayArray();
+            message.textContent = "Not Found";
+        }
+    }
+
+    // Initial display
+    displayArray();
+</script>
+
+</body>
+</html>

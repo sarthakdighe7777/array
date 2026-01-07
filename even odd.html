@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Even Odd Todo</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div >
+
+    <h1 class="mb-3 text-center">Even Odd Todo</h1>
+
+    <div class="input-group mb-3 w-50">
+      <input type="number" id="numInput" class="form-control" placeholder="Enter number">
+      <button onclick="addNumber()" class="btn btn-primary">Add</button>
+    </div>
+
+    <div class="mb-3 text-center  w-50">
+      <button onclick="showEven()" class="btn btn-secondary me-2">Show Even</button>
+      <button onclick="showOdd()" class="btn btn-primary me-2">Show Odd</button>
+      <button onclick="clearAll()" class="btn btn-dark">Clear</button>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-Primary">Even Numbers</h4>
+        <ul id="evenList" class="list-group"></ul>
+      </div>
+
+      <div class="col-md-6">
+        <h4 class="text-Primary">Odd Numbers</h4>
+        <ul id="oddList" class="list-group"></ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function addNumber() {
+    let num = document.getElementById("numInput").value;
+    if (num === "") return;
+
+    if (num % 2 == 0) {
+      document.getElementById("evenList").innerHTML +=
+        "<li class='list-group-item'>" + num + "</li>";
+    } else {
+      document.getElementById("oddList").innerHTML +=
+        "<li class='list-group-item'>" + num + "</li>";
+    }
+
+    document.getElementById("numInput").value = "";
+  }
+
+  function showEven() {
+    document.getElementById("evenList").style.display = "block";
+    document.getElementById("oddList").style.display = "none";
+  }
+
+  function showOdd() {
+    document.getElementById("evenList").style.display = "none";
+    document.getElementById("oddList").style.display = "block";
+  }
+
+  function clearAll() {
+    document.getElementById("evenList").innerHTML = "";
+    document.getElementById("oddList").innerHTML = "";
+  }
+</script>
+
+</body>
+</html>
